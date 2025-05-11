@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "generate-sitemap": "ts-node src/scripts/generated-sitemap.ts",
     "lint": "eslint --fix",
     "preview": "vite preview"
   },
@@ -31,9 +32,13 @@
     "@heroui/use-theme": "2.1.8",
     "@react-aria/visually-hidden": "3.8.22",
     "@react-types/shared": "3.29.0",
+    "axios": "^1.9.0",
     "clsx": "2.1.1",
     "date-fns": "^4.1.0",
     "framer-motion": "11.15.0",
+    "fs": "^0.0.1-security",
+    "fs-extra": "^11.3.0",
+    "fs-react": "^0.0.4",
     "hls.js": "^1.6.2",
     "lucide-react": "^0.507.0",
     "react": "18.3.1",
@@ -49,7 +54,8 @@
     "@eslint/compat": "1.2.8",
     "@eslint/eslintrc": "3.3.1",
     "@eslint/js": "9.25.1",
-    "@types/node": "20.5.7",
+    "@types/fs-extra": "^11.0.4",
+    "@types/node": "^22.15.17",
     "@types/react": "18.3.3",
     "@types/react-dom": "18.3.0",
     "@typescript-eslint/eslint-plugin": "8.31.1",
@@ -66,10 +72,14 @@
     "eslint-plugin-react-hooks": "5.2.0",
     "eslint-plugin-unused-imports": "4.1.4",
     "globals": "16.0.0",
+    "node-fetch": "^3.3.2",
+    "path": "^0.12.7",
     "postcss": "8.5.3",
     "prettier": "3.5.3",
+    "ts-node": "^10.9.2",
     "typescript": "5.6.3",
     "vite": "5.2.0",
+    "vite-plugin-sitemap": "^0.7.1",
     "vite-tsconfig-paths": "4.3.2"
   }
 }

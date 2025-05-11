@@ -16,6 +16,11 @@ interface ListEpisodeProps {
   epSlug: string | undefined;
 }
 
+interface JsonData {
+  success: boolean;
+  data: DramaDetail;
+}
+
 const ListEpisode: React.FC<ListEpisodeProps> = ({ slug, epSlug }) => {
   const [listEpisode, setListEpisode] = useState<Episode[]>();
   const [drama, setDrama] = useState<DramaDetail>();
@@ -27,7 +32,7 @@ const ListEpisode: React.FC<ListEpisodeProps> = ({ slug, epSlug }) => {
     const res = await fetch(
       `${import.meta.env.VITE_API_BASEURL}/api/v2/drama/${slug}`
     );
-    const jsonData = await res.json();
+    const jsonData = (await res.json()) as JsonData;
 
     setListEpisode(jsonData.data.episodes);
     setDrama(jsonData.data);

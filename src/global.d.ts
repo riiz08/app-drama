@@ -13,3 +13,9 @@ type OrientationLockType =
   | "portrait-secondary"
   | "landscape-primary"
   | "landscape-secondary";
+
+// src/types/global.d.ts
+
+interface Response {
+  json<T>(): Promise<T>;
+}

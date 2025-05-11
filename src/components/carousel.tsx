@@ -15,12 +15,17 @@ interface Drama {
   thumbnail: string;
 }
 
+interface ResJson {
+  success: boolean;
+  data: Drama[];
+}
+
 const Carousel = () => {
   const [data, setData] = useState<Drama[]>([]);
 
   const fetchData = async () => {
     const res = await fetch(`${import.meta.env.VITE_API_BASEURL}/api/v2/drama`);
-    const resJson = await res.json();
+    const resJson = (await res.json()) as ResJson;
 
     if (!resJson.success) return alert("something when wrong!");
 

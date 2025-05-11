@@ -9,6 +9,11 @@ import { DramaDetail } from "@/types";
 import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 
+interface JsonData {
+  success: boolean;
+  data: DramaDetail;
+}
+
 const DetailPage = () => {
   const { slug } = useParams();
   const [data, setData] = useState<DramaDetail>();
@@ -18,7 +23,7 @@ const DetailPage = () => {
     const res = await fetch(
       `${import.meta.env.VITE_API_BASEURL}/api/v2/drama/${slug}`
     );
-    const jsonData = await res.json();
+    const jsonData = (await res.json()) as JsonData;
 
     if (!jsonData.success) return <Loading />;
     setData(jsonData.data);

@@ -4,6 +4,11 @@ import { Link } from "@heroui/link";
 import { LatestEpisode } from "@/types";
 import useIsMobile from "@/hooks/useIsMobile";
 
+interface JsonData {
+  success: boolean;
+  data: LatestEpisode[];
+}
+
 const LatestUpdate = () => {
   const [data, setData] = useState<LatestEpisode[]>([]);
   const isMobile = useIsMobile();
@@ -12,7 +17,7 @@ const LatestUpdate = () => {
     const res = await fetch(
       `${import.meta.env.VITE_API_BASEURL}/api/v2/drama/latest-update?limit=${isMobile ? 6 : 8}`
     );
-    const jsonData = await res.json();
+    const jsonData = (await res.json()) as JsonData;
     setData(jsonData.data);
   };
 

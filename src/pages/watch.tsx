@@ -28,6 +28,16 @@ interface DramaDetail {
   episodes: Episode[];
 }
 
+interface EpJson {
+  success: true;
+  data: Episode;
+}
+
+interface DramaJson {
+  success: boolean;
+  data: DramaDetail;
+}
+
 const WatchPage = () => {
   const { slug } = useParams();
   const [episode, setEpisode] = useState<Episode>();
@@ -59,7 +69,7 @@ const WatchPage = () => {
         const epRes = await fetch(
           `${import.meta.env.VITE_API_BASEURL}/api/v2/episode/detail/${slug}`
         );
-        const epJson = await epRes.json();
+        const epJson = (await epRes.json()) as EpJson;
 
         if (!epJson.success) throw new Error("Episode not found");
         setEpisode(epJson.data);
@@ -68,7 +78,7 @@ const WatchPage = () => {
         const dramaRes = await fetch(
           `${import.meta.env.VITE_API_BASEURL}/api/v2/drama/by/${epJson.data.dramaId}`
         );
-        const dramaJson = await dramaRes.json();
+        const dramaJson = (await dramaRes.json()) as DramaJson;
 
         if (!dramaJson.success) throw new Error("Drama not found");
         setDrama(dramaJson.data);

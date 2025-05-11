@@ -8,6 +8,12 @@ import Recomended from "@/components/recomended";
 import StickySocialBar from "@/components/sticky-social-bar";
 import AdsterraBanner from "@/components/adsterra-banner";
 
+interface JsonData {
+  success: boolean;
+  data: LatestEpisode[];
+  pagination: PaginationType;
+}
+
 const LatestUpdate = () => {
   const [data, setData] = useState<LatestEpisode[]>([]);
   const [pagination, setPagination] = useState<PaginationType>();
@@ -17,7 +23,7 @@ const LatestUpdate = () => {
     const res = await fetch(
       `${import.meta.env.VITE_API_BASEURL}/api/v2/drama/latest-update?page=${page}`
     );
-    const jsonData = await res.json();
+    const jsonData = (await res.json()) as JsonData;
 
     if (!jsonData.success) return <Loading />;
 
