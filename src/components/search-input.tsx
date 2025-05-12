@@ -47,13 +47,16 @@ const SearchInput = () => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   return (
     <>
-      <Button onPress={onOpen}>Open Modal</Button>
+      <Button onPress={onOpen} isIconOnly variant="flat">
+        {" "}
+        <SearchIcon className="mb-0.5 pointer-events-none flex-shrink-0" />
+      </Button>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
           {(onClose) => (
             <>
               <ModalHeader className="flex flex-col gap-1">
-                Modal Title
+                Cari Drama
               </ModalHeader>
               <ModalBody>
                 <Input
@@ -74,7 +77,7 @@ const SearchInput = () => {
                   Close
                 </Button>
                 <Button color="primary" onPress={onClose}>
-                  Action
+                  Search
                 </Button>
               </ModalFooter>
             </>
