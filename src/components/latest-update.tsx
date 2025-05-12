@@ -26,7 +26,7 @@ const LatestUpdate = () => {
   }, []);
 
   return (
-    <div>
+    <div className="container">
       <div className="flex justify-between mb-3 items-center">
         <h3 className="text-xl font-medium">Terbaru</h3>
         <Link href="/drama/latest-update" color="secondary">

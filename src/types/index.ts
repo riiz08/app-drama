@@ -47,6 +47,7 @@ export type Episode = {
 };
 
 export type DramaDetail = {
+  id?: string;
   slug?: string;
   title: string;
   description: string;

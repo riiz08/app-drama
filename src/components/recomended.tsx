@@ -28,7 +28,7 @@ const Recomended = () => {
   return (
     <div className="my-3">
       <h3 className="text-xl font-medium mb-2">Recomended</h3>
-      <div className="grid grid-cols-3 md:grid-cols-9 md:gap-16">
+      <div className="grid grid-cols-5 gap-36 overflow-auto md:grid-cols-9 md:gap-16">
         {data.map((drama) => (
           <DramaCard
             key={drama.id}

@@ -126,6 +126,13 @@ const WatchPage = () => {
         <h1 className="text-foreground-900 font-medium text-xl">
           {drama.title} - Episode {episode.episodeNum}
         </h1>
+        <div className="bg-default-50 p-2 rounded-lg text-tiny text-default-500 mt-2">
+          <p>
+            Nonton drama Malaysia terbaru full episode hanya di Mangeakkk.
+            Streaming cepat, gratis, dan bebas iklan! Update drama setiap hari
+            dengan koleksi lengkap drama Melayu favorit kamu.
+          </p>
+        </div>
       </div>
       <Card>
         <CardBody>
@@ -139,14 +146,18 @@ const WatchPage = () => {
         <Button
           className="w-1/2"
           onPress={() => prevEpisode && goToEpisode(prevEpisode.slug)}
-          disabled={!prevEpisode}
+          isDisabled={!prevEpisode}
+          variant="shadow"
+          color="primary"
         >
           <ChevronLeft strokeWidth={2.5} />
         </Button>
         <Button
           className="w-1/2"
           onPress={() => nextEpisode && goToEpisode(nextEpisode.slug)}
-          disabled={!nextEpisode}
+          isDisabled={!nextEpisode}
+          variant="shadow"
+          color="primary"
         >
           <ChevronRight strokeWidth={2.5} />
         </Button>

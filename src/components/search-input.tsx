@@ -1,4 +1,13 @@
+import { Button } from "@heroui/button";
 import { Input } from "@heroui/input";
+import {
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  useDisclosure,
+} from "@heroui/modal";
 
 interface PropsSearchIcon {
   className: string | "";
@@ -35,21 +44,44 @@ export const SearchIcon: React.FC<PropsSearchIcon> = ({ className }) => {
 };
 
 const SearchInput = () => {
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
   return (
-    <div>
-      <Input
-        placeholder="Type to search..."
-        type="text"
-        variant="faded"
-        size="md"
-        isRequired
-        isClearable
-        errorMessage="Please enter a valid title"
-        startContent={
-          <SearchIcon className="text-black/50 mb-0.5 dark:text-white/90 text-slate-400 pointer-events-none flex-shrink-0" />
-        }
-      />
-    </div>
+    <>
+      <Button onPress={onOpen}>Open Modal</Button>
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+        <ModalContent>
+          {(onClose) => (
+            <>
+              <ModalHeader className="flex flex-col gap-1">
+                Modal Title
+              </ModalHeader>
+              <ModalBody>
+                <Input
+                  placeholder="Type to search..."
+                  type="text"
+                  variant="faded"
+                  size="md"
+                  isRequired
+                  isClearable
+                  errorMessage="Please enter a valid title"
+                  startContent={
+                    <SearchIcon className="text-black/50 mb-0.5 dark:text-white/90 text-slate-400 pointer-events-none flex-shrink-0" />
+                  }
+                />
+              </ModalBody>
+              <ModalFooter>
+                <Button color="danger" variant="light" onPress={onClose}>
+                  Close
+                </Button>
+                <Button color="primary" onPress={onClose}>
+                  Action
+                </Button>
+              </ModalFooter>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
+    </>
   );
 };
 
