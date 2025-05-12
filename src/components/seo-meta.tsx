@@ -11,6 +11,7 @@ const SeoMeta = ({ title, description, image, url }: SeoMetaProps) => {
   return (
     <Helmet>
       <title>{title}</title>
+      <meta name="title" content={title} />
       <meta name="description" content={description} />
 
       {/* Open Graph */}
