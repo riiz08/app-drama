@@ -26,7 +26,6 @@ const VideoPlayer = ({ src, onPlay }: Props) => {
 
   useEffect(() => {
     const videoElement = videoRef.current;
-
     if (!videoElement || typeof window === "undefined") return;
 
     document.addEventListener("fullscreenchange", handleFullscreenChange);
@@ -41,20 +40,37 @@ const VideoPlayer = ({ src, onPlay }: Props) => {
         });
       }
 
+      let shouldUseProxy = true;
+      try {
+        const url = new URL(src);
+        if (url.hostname.endsWith(".pages.dev")) {
+          shouldUseProxy = false;
+        }
+      } catch (e) {
+        console.error("Invalid URL:", src);
+      }
+
+      const finalSrc = shouldUseProxy
+        ? `${import.meta.env.VITE_API_BASEURL}/api/v2/proxy?url=${encodeURIComponent(src)}`
+        : src;
+
       if (Hls.isSupported()) {
         const hls = new Hls({
           xhrSetup: (xhr, url) => {
-            const proxyUrl = `${import.meta.env.VITE_API_BASEURL}/api/v2/proxy?url=${encodeURIComponent(url)}`;
-            xhr.open("GET", proxyUrl, true);
+            if (shouldUseProxy) {
+              const proxyUrl = `${import.meta.env.VITE_API_BASEURL}/api/v2/proxy?url=${encodeURIComponent(url)}`;
+              xhr.open("GET", proxyUrl, true);
+            } else {
+              xhr.open("GET", url, true);
+            }
           },
         });
 
         hlsRef.current = hls;
-        const playlistUrl = `${import.meta.env.VITE_API_BASEURL}/api/v2/proxy?url=${encodeURIComponent(src)}`;
-        hls.loadSource(playlistUrl);
+        hls.loadSource(finalSrc);
         hls.attachMedia(videoElement);
       } else {
-        videoElement.src = src;
+        videoElement.src = finalSrc;
       }
     };
 
