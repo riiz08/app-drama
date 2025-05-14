@@ -43,7 +43,7 @@ const VideoPlayer = ({ src, onPlay }: Props) => {
       let shouldUseProxy = true;
       try {
         const url = new URL(src);
-        if (url.hostname.endsWith(".pages.dev")) {
+        if (url.hostname.endsWith(".mangeakkk.my.id")) {
           shouldUseProxy = false;
         }
       } catch (e) {
