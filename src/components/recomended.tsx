@@ -28,7 +28,7 @@ const Recomended = () => {
   return (
     <div className="my-3">
       <h3 className="text-xl font-medium mb-2">Recomended</h3>
-      <div className="grid grid-cols-5 gap-36 overflow-auto md:grid-cols-9 md:gap-16">
+      <div className="flex items-center justify-start overflow-auto gap-3 px-2">
         {data.map((drama) => (
           <DramaCard
             key={drama.id}
@@ -37,6 +37,7 @@ const Recomended = () => {
             slug={drama.slug}
             hrefPrefix="/drama/detail"
             isRecomended={true}
+            classname="md:w-36 w-36"
           />
         ))}
       </div>

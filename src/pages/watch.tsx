@@ -14,6 +14,7 @@ import { useNavigate } from "react-router-dom";
 import StickySocialBar from "@/components/sticky-social-bar";
 import AdsterraBanner from "@/components/adsterra-banner";
 import useAdsterraAds from "@/hooks/useAdstera";
+import AdsterraNative from "@/components/adsterra-native";
 
 interface DramaDetail {
   slug: string;
@@ -189,6 +190,7 @@ const WatchPage = () => {
           </div>
         </CardBody>
       </Card>
+      <AdsterraNative />
       <Recomended />
     </WatchLayout>
   );

@@ -9,11 +9,12 @@ const DramaCard: React.FC<DramaCardProps> = ({
   episodeNum,
   hrefPrefix,
   isRecomended,
+  classname,
 }) => {
   return (
     <Link href={`${hrefPrefix}/${slug}`}>
       <div
-        className={`group relative flex-shrink-0 rounded-lg overflow-hidden bg-default-100 hover:bg-default-200 cursor-pointer h-60 transition-colors my-2 duration-300 ${isRecomended ? "w-32 md:w-36" : "w-[140px]"}`}
+        className={`group relative flex-shrink-0 rounded-lg overflow-hidden bg-default-100 hover:bg-default-200 cursor-pointer h-60 transition-colors my-2 duration-300 ${classname}`}
       >
         <Image
           alt={`Drama ${title}`}

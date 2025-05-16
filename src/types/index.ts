@@ -11,6 +11,7 @@ export type DramaCardProps = {
   episodeNum?: number;
   hrefPrefix?: string; // optional, default to "/watch"
   isRecomended?: boolean;
+  classname?: string;
 };
 
 export type LatestEpisode = {

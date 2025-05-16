@@ -1,4 +1,5 @@
 import AdsterraBanner from "@/components/adsterra-banner";
+import AdsterraNative from "@/components/adsterra-native";
 import Carousel from "@/components/carousel";
 import LatestUpdate from "@/components/latest-update";
 import Recomended from "@/components/recomended";
@@ -18,8 +19,9 @@ export default function index() {
       <StickySocialBar />
       <Carousel />
       <LatestUpdate />
-      <Recomended />
       <AdsterraBanner />
+      <Recomended />
+      <AdsterraNative />
     </DefaultLayout>
   );
 }

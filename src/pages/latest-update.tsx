@@ -38,7 +38,7 @@ const LatestUpdate = () => {
   return (
     <LatestUpdateLayout>
       <h3 className="text-xl font-medium">Terbaru</h3>
-      <div className="flex md:justify-start justify-center items-center mx-auto flex-wrap gap-4">
+      <div className="flex justify-start items-center w-full gap-1 flex-wrap">
         {data.length > 0 ? (
           data.map((drama) => (
             <DramaCard
@@ -48,6 +48,7 @@ const LatestUpdate = () => {
               thumbnail={drama.drama.thumbnail}
               episodeNum={drama.episodeNum}
               hrefPrefix="/watch"
+              classname="w-32"
             />
           ))
         ) : (

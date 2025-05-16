@@ -32,8 +32,6 @@ export default defineConfig(async () => {
 
       const episodes = detailResponse.data.episodes;
 
-      console.log({ detailResponse });
-
       if (Array.isArray(episodes)) {
         for (const ep of episodes) {
           watchRoutes.push(`/drama/watch/${ep.slug}`);

@@ -43,6 +43,7 @@ const LatestUpdate = () => {
               episodeNum={el.episodeNum}
               thumbnail={el.drama.thumbnail}
               hrefPrefix="/drama/watch"
+              classname="w-36"
             />
           ))}
         </div>
