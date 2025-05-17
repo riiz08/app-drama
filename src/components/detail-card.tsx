@@ -3,6 +3,7 @@ import { Image } from "@heroui/image";
 import { DramaDetail } from "@/types";
 import { Button } from "@heroui/button";
 import { Link } from "@heroui/link";
+import slugify from "react-slugify";
 
 const DetailCard: React.FC<DramaDetail> = ({
   description,
@@ -52,20 +53,31 @@ const DetailCard: React.FC<DramaDetail> = ({
         shadow="sm"
       >
         <CardBody className="flex justify-start flex-row flex-wrap gap-2 items-center">
-          {episodes.length > 0
-            ? episodes.map((episode) => (
-                <Button
-                  as={Link}
-                  href={`/drama/watch/${episode.slug}`}
-                  variant="bordered"
-                  color="primary"
-                  isIconOnly
-                  key={episode.id}
-                >
-                  {episode.episodeNum}
-                </Button>
-              ))
-            : ""}
+          {episodes ? (
+            episodes?.map((episode) => (
+              <Button
+                as={Link}
+                href={`/drama/watch/${episode.slug}`}
+                variant="bordered"
+                color="primary"
+                isIconOnly
+                key={episode.id}
+              >
+                {episode.episodeNum}
+              </Button>
+            ))
+          ) : (
+            <Button
+              variant="shadow"
+              color="primary"
+              as={Link}
+              href={`/drama/detail/${slugify(title)}`}
+              fullWidth={true}
+              size="md"
+            >
+              Tonton full Episode
+            </Button>
+          )}
         </CardBody>
       </Card>
     </Card>

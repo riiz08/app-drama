@@ -58,5 +58,5 @@ export type DramaDetail = {
   rangkaian: string;
   pengarah: string;
   produksi: string;
-  episodes: Episode[];
+  episodes?: Episode[];
 };

@@ -8,6 +8,9 @@ import {
   ModalFooter,
   useDisclosure,
 } from "@heroui/modal";
+import { useRef } from "react";
+import { useNavigate } from "react-router-dom";
+import slugify from "react-slugify";
 
 interface PropsSearchIcon {
   className: string | "";
@@ -45,6 +48,9 @@ export const SearchIcon: React.FC<PropsSearchIcon> = ({ className }) => {
 
 const SearchInput = () => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const searchRef = useRef<HTMLInputElement>(null);
+  const router = useNavigate();
+
   return (
     <>
       <Button onPress={onOpen} isIconOnly variant="flat">
@@ -66,6 +72,7 @@ const SearchInput = () => {
                   size="md"
                   isRequired
                   isClearable
+                  ref={searchRef}
                   errorMessage="Please enter a valid title"
                   startContent={
                     <SearchIcon className="text-black/50 mb-0.5 dark:text-white/90 text-slate-400 pointer-events-none flex-shrink-0" />
@@ -76,7 +83,12 @@ const SearchInput = () => {
                 <Button color="danger" variant="light" onPress={onClose}>
                   Close
                 </Button>
-                <Button color="primary" onPress={onClose}>
+                <Button
+                  color="primary"
+                  onPress={() =>
+                    router(`/${slugify(searchRef.current?.value)}`)
+                  }
+                >
                   Search
                 </Button>
               </ModalFooter>
